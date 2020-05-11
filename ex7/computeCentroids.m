@@ -15,7 +15,7 @@ function centroids = computeCentroids(X, idx, K)
 
 % You need to return the following variables correctly.
 centroids = zeros(K, n);
-
+centroids_array = [idx, X]
 
 % ====================== YOUR CODE HERE ======================
 % Instructions: Go over every centroid and compute mean of all points that
@@ -27,7 +27,18 @@ centroids = zeros(K, n);
 %
 
 
-
+for i = 1:K
+    % get index of all values of temp k
+    temp_ind = idx() == i;
+    
+    % get number of examples in centroid for first part of equation
+    count = sum(temp_ind);
+    
+    % get all related examples for centroids 
+    examples = X(temp_ind,:);
+    
+    centroids(i,:) =  (1/count) * sum(examples);
+ end
 
 
 
